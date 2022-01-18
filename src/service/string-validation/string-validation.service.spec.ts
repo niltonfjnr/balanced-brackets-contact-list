@@ -39,4 +39,28 @@ describe('StringValidationService', () => {
     const result = service.hasValidBalancedBrackets(input);
     expect(result).toBe(false);
   });
+
+  it('● should receive "]{)]" as input and return false', () => {
+    const input = ']{)]';
+    const result = service.hasValidBalancedBrackets(input);
+    expect(result).toBe(false);
+  });
+
+  it('● should receive "" as input and return false', () => {
+    const input = '';
+    const result = service.hasValidBalancedBrackets(input);
+    expect(result).toBe(false);
+  });
+
+  it('● should receive undefined as input and return false', () => {
+    const input = undefined;
+    const result = service.hasValidBalancedBrackets(input);
+    expect(result).toBe(false);
+  });
+
+  it('● should receive some invalid type value as input and return false', () => {
+    const input = {} as any;
+    const result = service.hasValidBalancedBrackets(input);
+    expect(result).toBe(false);
+  });
 });
