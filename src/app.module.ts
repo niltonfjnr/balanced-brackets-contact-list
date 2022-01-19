@@ -1,12 +1,11 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { StringValidationService } from './services/string-validation/string-validation.service';
 import { StringValidationController } from './controllers/string-validation/string-validation.controller';
+import { PersonModule } from './controllers/person/person.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PersonController } from './controllers/person/person.controller';
-import { PersonService } from './services/person/person.service';
-import { Person } from './domain/entities/person.entity';
 
 @Module({
   imports: [
@@ -20,9 +19,9 @@ import { Person } from './domain/entities/person.entity';
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true, // Do not use in production
     }),
-    TypeOrmModule.forFeature([Person]),
+    PersonModule,
   ],
-  controllers: [AppController, StringValidationController, PersonController],
-  providers: [AppService, StringValidationService, PersonService],
+  controllers: [AppController, StringValidationController],
+  providers: [AppService, StringValidationService],
 })
 export class AppModule {}

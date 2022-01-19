@@ -11,7 +11,9 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('person')
 @Controller('person')
 export class PersonController {
   constructor(readonly personService: PersonService) {}

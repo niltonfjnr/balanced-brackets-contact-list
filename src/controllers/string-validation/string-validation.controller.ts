@@ -1,6 +1,9 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import { StringValidationService } from 'src/services/string-validation/string-validation.service';
+import { StringValidationService } from '../../services/string-validation/string-validation.service';
 
+import { Controller, Get, Param } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+
+@ApiTags('string')
 @Controller('string-validation')
 export class StringValidationController {
   constructor(
