@@ -6,7 +6,9 @@
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
   <p align="center">A progressive <a href="https://nodejs.org/dist/v16.13.2/" target="_blank">Node.js (v16.13.2)</a> framework for building efficient and scalable server-side applications.</p>
-  <p align="center">Using <a href="https://www.postgresql.org/ftp/source/v12.9/" target="_blank">PostgreSQL (v12.9-2)</a> database version .</p>
+  <p align="center">Using <a href="https://www.postgresql.org/ftp/source/v12.9/" target="_blank">PostgreSQL (v12.9-2)</a> database version.</p>
+    <p align="center">
+  <p align="center">When running the project please access "/api" endpoint to explore documentation(Swagger Frontend).</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
