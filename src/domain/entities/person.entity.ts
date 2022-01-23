@@ -12,7 +12,7 @@ export class Person {
   name: string;
 
   @ApiProperty({ type: [Contact] })
-  @OneToMany(() => Contact, (contact) => contact.person, {
+  @OneToMany(() => Contact, (contacts) => contacts.person, {
     primary: true,
     eager: true,
   })
