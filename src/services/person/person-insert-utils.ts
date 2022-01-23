@@ -1,4 +1,4 @@
-import { Person } from '../../domain/entities/person.entity';
+import { PersonSchema } from '../../infra/typeorm/schemas/person.schema';
 import { InsertResult } from 'typeorm';
 
 export default class PersonInsertUtils {
@@ -8,7 +8,10 @@ export default class PersonInsertUtils {
     return personId;
   }
 
-  static definePersonPrimaryKeyToContacts(person: Person, personId: number) {
+  static definePersonPrimaryKeyToContacts(
+    person: PersonSchema,
+    personId: number,
+  ) {
     person.id = personId;
     for (let index = 0; index < person.contacts.length; index++) {
       const contact = person.contacts[index];

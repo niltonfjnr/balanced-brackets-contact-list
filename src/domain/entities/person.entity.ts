@@ -1,20 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Contact } from './contact.entity';
 
-@Entity()
-export class Person {
-  @PrimaryGeneratedColumn()
+export interface Person {
   id: number;
-
-  @ApiProperty()
-  @Column()
   name: string;
-
-  @ApiProperty({ type: [Contact] })
-  @OneToMany(() => Contact, (contacts) => contacts.person, {
-    primary: true,
-    eager: true,
-  })
   contacts: Contact[];
 }

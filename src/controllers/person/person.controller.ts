@@ -1,5 +1,5 @@
-import { Person } from '../../domain/entities/person.entity';
 import { PersonService } from '../../services/person/person.service';
+import { PersonSchema } from '../../infra/typeorm/schemas/person.schema';
 
 import {
   Body,
@@ -19,7 +19,7 @@ export class PersonController {
   constructor(readonly personService: PersonService) {}
 
   @Post()
-  async postPerson(@Body() person: Person) {
+  async postPerson(@Body() person: PersonSchema) {
     try {
       const result = await this.personService.insert(person);
       return result;
@@ -29,7 +29,7 @@ export class PersonController {
   }
 
   @Put(':id')
-  async putPerson(@Param('id') id: string, @Body() person: Person) {
+  async putPerson(@Param('id') id: string, @Body() person: PersonSchema) {
     try {
       if (person) person.id = parseInt(id);
       const result = await this.personService.update(person);

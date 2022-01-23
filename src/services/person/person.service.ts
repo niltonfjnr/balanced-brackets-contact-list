@@ -1,5 +1,5 @@
-import { Person } from '../../domain/entities/person.entity';
-import { Contact } from '../../domain/entities/contact.entity';
+import { PersonSchema } from '../../infra/typeorm/schemas/person.schema';
+import { ContactSchema } from '../../infra/typeorm/schemas/contact.schema';
 import PersonInsertUtils from './person-insert-utils';
 
 import { Injectable } from '@nestjs/common';
@@ -9,12 +9,12 @@ import { InsertResult, Repository } from 'typeorm';
 @Injectable()
 export class PersonService {
   constructor(
-    @InjectRepository(Person)
-    private peopleRepository: Repository<Person>,
-    @InjectRepository(Contact)
-    private contactRepository: Repository<Contact>,
+    @InjectRepository(PersonSchema)
+    private peopleRepository: Repository<PersonSchema>,
+    @InjectRepository(ContactSchema)
+    private contactRepository: Repository<ContactSchema>,
   ) {}
-  async insert(person: Person): Promise<InsertResult> {
+  async insert(person: PersonSchema): Promise<InsertResult> {
     const result = await this.peopleRepository.insert(person);
     try {
       const personId = PersonInsertUtils.getGeneratedPersonPrimaryKey(result);
@@ -28,10 +28,10 @@ export class PersonService {
     return result;
   }
 
-  update(person: Person): Promise<any> {
+  update(person: PersonSchema): Promise<any> {
     return this.peopleRepository.update(person.id, person);
   }
-  getById(id: string): Promise<Person> {
+  getById(id: string): Promise<PersonSchema> {
     return this.peopleRepository.findOne(id);
   }
   getAll(validPageParam: number, validLimitParam: number) {
