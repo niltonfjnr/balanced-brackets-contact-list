@@ -9,7 +9,6 @@ export class ContactSchema implements Contact {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ApiProperty({ enum: ['Email', 'Phone', 'Whatsapp'] })
   @Column()
   type: string;
 

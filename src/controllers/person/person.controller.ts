@@ -1,3 +1,4 @@
+import { ContactType } from '../../domain/enums/contact-type.enum';
 import { PersonService } from '../../services/person/person.service';
 import { PersonSchema } from '../../infra/typeorm/schemas/person.schema';
 
@@ -11,7 +12,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('person')
 @Controller('person')
@@ -19,9 +20,13 @@ export class PersonController {
   constructor(readonly personService: PersonService) {}
 
   @Post()
-  async postPerson(@Body() person: PersonSchema) {
+  @ApiQuery({ name: 'contactsTypes', enum: ContactType, isArray: true })
+  async postPerson(
+    @Body() person: PersonSchema,
+    @Query('contactsTypes') contactsTypes: ContactType | ContactType[],
+  ) {
     try {
-      const result = await this.personService.insert(person);
+      const result = await this.personService.insert(person, contactsTypes);
       return result;
     } catch (error) {
       return { status: false, code: 500, error };
@@ -29,10 +34,15 @@ export class PersonController {
   }
 
   @Put(':id')
-  async putPerson(@Param('id') id: string, @Body() person: PersonSchema) {
+  @ApiQuery({ name: 'contactsTypes', enum: ContactType, isArray: true })
+  async putPerson(
+    @Param('id') id: string,
+    @Body() person: PersonSchema,
+    @Query('contactsTypes') contactsTypes: ContactType | ContactType[],
+  ) {
     try {
       if (person) person.id = parseInt(id);
-      const result = await this.personService.update(person);
+      const result = await this.personService.update(person, contactsTypes);
       return result;
     } catch (error) {
       return { status: false, code: 500, error };
